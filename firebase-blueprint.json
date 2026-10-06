@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "avatar": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Inventory item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "sku": { "type": "string" },
+        "category": { "type": "string" },
+        "currentStock": { "type": "number" },
+        "minStock": { "type": "number" },
+        "price": { "type": "number" },
+        "status": { "type": "string" },
+        "prediction": { "type": "number" },
+        "confidence": { "type": "number" },
+        "lastUpdated": { "type": "string" },
+        "userId": { "type": "string" },
+        "createdAt": { "type": "object" }
+      },
+      "required": ["name", "sku", "userId"]
+    },
+    "ActivityLog": {
+      "title": "ActivityLog",
+      "description": "Log of user actions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "severity": { "type": "string" },
+        "userId": { "type": "string" }
+      },
+      "required": ["type", "title", "userId"]
+    },
+    "SalesData": {
+      "title": "SalesData",
+      "description": "Sales and prediction data for charts",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string" },
+        "actual": { "type": "number" },
+        "predicted": { "type": "number" },
+        "userId": { "type": "string" }
+      },
+      "required": ["date", "userId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/inventory/{productId}": {
+      "schema": "Product",
+      "description": "Inventory items"
+    },
+    "/history/{historyId}": {
+      "schema": "ActivityLog",
+      "description": "Activity history"
+    },
+    "/sales/{salesId}": {
+      "schema": "SalesData",
+      "description": "Sales trend data"
+    }
+  }
+}
